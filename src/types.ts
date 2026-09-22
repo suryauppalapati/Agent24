@@ -1,3 +1,5 @@
+import type { tools } from "./agent/tools";
+
 export interface AgentCallbacks {
   onToken: (token: string) => void;
   onToolCallStart: (name: string, args: unknown) => void;
@@ -6,6 +8,8 @@ export interface AgentCallbacks {
   onToolApproval: (name: string, args: unknown) => Promise<boolean>;
   onTokenUsage?: (usage: TokenUsageInfo) => void;
 }
+
+export type ToolName = keyof typeof tools
 
 export interface ToolApprovalRequest {
   toolName: string;
