@@ -40,7 +40,7 @@ export const runAgent = async ({message, conversationHistory = [], callbacks}: R
 
     console.log(text);
 
-    Laminar.flush();
+   await Laminar.flush();
 }
 
 runAgent({message: "Hey! My birthday is on 24th Decemeber. How many days are left for my birthday?"})
