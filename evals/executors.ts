@@ -31,7 +31,7 @@ const TOOL_DEFINITIONS : Record<string, Tool> = {
       path: z.string().describe('Path to the file to delete.')
     })
   },
-  listFile: {
+  listFiles: {
     description: 'Lists the files in the given directory. Use this tool to list the files.',
     inputSchema: z.object({
       path: z.string().describe('Path to the directory to list.')
@@ -45,10 +45,10 @@ const TOOL_DEFINITIONS : Record<string, Tool> = {
   }
 }
 
-const mockSingleTurnExecutor = async (evalData: EvalData): Promise<SingleTurnResult> => {
+export const mockSingleTurnExecutor = async (evalData: EvalData): Promise<SingleTurnResult> => {
   const { tools, systemPrompt, config } = evalData;
   const messages = buildMessages(evalData)
-  
+
   const activeTools = tools.reduce<ToolSet>((acc, toolName) => {
     const t = TOOL_DEFINITIONS[toolName];
     if (t !== undefined) {
@@ -61,8 +61,9 @@ const mockSingleTurnExecutor = async (evalData: EvalData): Promise<SingleTurnRes
   }, {});
 
   const {toolCalls, text} = await generateText({
-    model: anthropic(config?.model ?? 'claude-sonnet-4-5'),
-    messages, 
+    model: anthropic(config?.model ?? 'claude-haiku-4-5'),
+    messages,
+    allowSystemInMessages: true,
     tools: activeTools,
     system: systemPrompt ?? SYSTEM_PROMPT,
     ...config?.temperature && {temperature: config.temperature}

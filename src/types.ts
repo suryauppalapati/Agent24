@@ -1,4 +1,4 @@
-import type { tools } from "./agent/tools";
+import type { tools } from "./agent/tools/index.js";
 
 export interface AgentCallbacks {
   onToken: (token: string) => void;
