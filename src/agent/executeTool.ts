@@ -1,8 +1,8 @@
-import { tools as agentTools } from "./tools"
+import { tools as agentTools } from "./tools/index.js"
 
 type ExecuteToolParams = {
-    toolName: keyof typeof agentTools,
-    args?: any
+    toolName: Extract<keyof typeof agentTools, string>,
+    args?: unknown
 }
 
 const executeTool = async ({toolName, args}: ExecuteToolParams) => {
@@ -15,7 +15,7 @@ const executeTool = async ({toolName, args}: ExecuteToolParams) => {
     }
     
     const execTool = tool.execute;
-    const result = await execTool(args, {
+    const result = await execTool((args ?? {}) as Record<string, never>, {
         toolCallId: '',
         messages: []
     })
