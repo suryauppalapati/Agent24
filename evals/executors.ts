@@ -10,6 +10,7 @@ import type {
 } from "./types.ts";
 import { SYSTEM_PROMPT } from '../src/agent/system/prompt.ts';
 import { buildMessages } from './utils.ts';
+import openai  from '../src/agent/client.ts';
 
 const TOOL_DEFINITIONS : Record<string, Tool> = {
   readFile: {
@@ -61,7 +62,7 @@ export const mockSingleTurnExecutor = async (evalData: EvalData): Promise<Single
   }, {});
 
   const {toolCalls, text} = await generateText({
-    model: anthropic(config?.model ?? 'claude-haiku-4-5'),
+    model: openai(config?.model ?? 'gpt-5-mini'),
     messages,
     allowSystemInMessages: true,
     tools: activeTools,

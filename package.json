@@ -1,5 +1,5 @@
 {
-  "name": "agi",
+  "name": "agent24",
   "version": "1.0.0",
   "type": "module",
   "bin": {
@@ -10,6 +10,7 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
+    "postbuild": "chmod +x dist/cli.js",
     "dev": "tsx watch --env-file=.env src/index.ts",
     "start": "tsx --env-file=.env src/index.ts",
     "eval": "npx lmnr eval",
@@ -25,8 +26,8 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@ai-sdk/anthropic": "^2.0.72",
-    "@ai-sdk/openai": "^4.0.74",
+    "@ai-sdk/anthropic": "^2.0.77",
+    "@ai-sdk/openai": "^2.0.72",
     "@lmnr-ai/lmnr": "^0.7.9",
     "@types/shelljs": "^0.8.17",
     "ai": "^5.0.102",
