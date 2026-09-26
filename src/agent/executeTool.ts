@@ -13,7 +13,7 @@ const executeTool = async ({toolName, args}: ExecuteToolParams) => {
     if(!tool['execute']) {
         throw new Error (`Tool ${toolName} is missing the execute function. `)
     }
-    
+
     const execTool = tool.execute;
     const result = await execTool((args ?? {}) as Record<string, never>, {
         toolCallId: '',

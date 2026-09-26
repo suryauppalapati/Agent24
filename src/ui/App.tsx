@@ -87,6 +87,8 @@ export function App() {
           },
         });
 
+        // console.log("New conversation history:", JSON.stringify(newHistory, null, 2));
+
         setConversationHistory(newHistory ?? []);
       } catch (error) {
         const errorMessage =
@@ -105,8 +107,8 @@ export function App() {
   return (
     <Box flexDirection="column" padding={1}>
       <Box marginBottom={1}>
-        <Text bold color="magenta">
-          🤖 AI Agent
+        <Text bold color="cyanBright">
+          💀 Agent24
         </Text>
         <Text dimColor> (type "exit" to quit)</Text>
       </Box>
