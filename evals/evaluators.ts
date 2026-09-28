@@ -53,7 +53,10 @@ export async function llmJudge(output: MultiTurnResult, target: MultiTurnTarget)
     schemaName: "EvaluationResult",
   })
 
-  return response.object;
+  return {
+    score: response.object.score / 10,
+    reason: response.object.reason
+  };
 }
 
 /**
